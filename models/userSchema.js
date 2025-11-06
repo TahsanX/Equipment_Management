@@ -1,9 +1,14 @@
-const { default: mongoose } = require("mongoose");
+require('dotenv').config();
+const mongoose = require('mongoose');
+
+mongoose.connect(process.env.MONGO, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+})
+  .then(() => console.log("✅ MongoDB Atlas connected"))
+  .catch(err => console.error("❌ Connection failed:", err));
 
 const Schema = mongoose.Schema;
-mongoose.connect(process.env.MONGO).then(() => {
-  console.log(`Database connected`);
-});
 
 const UserSchema = new Schema({
   username: {
@@ -25,4 +30,5 @@ const UserSchema = new Schema({
     required: true,
   },
 });
+
 module.exports = mongoose.model("User", UserSchema);
