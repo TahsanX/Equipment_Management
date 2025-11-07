@@ -3,6 +3,7 @@ const app = express();
 require("dotenv").config();
 const mongoose = require("mongoose");
 require("dotenv").config();
+const MongoStore = require("connect-mongo");
 const path = require("path");
 const cseRoute = require("./routes/cse");
 const eeeRoute = require("./routes/eee");
@@ -18,10 +19,13 @@ const secretkey = process.env.SECRET_KEY;
 //express session
 app.use(
   session({
-    secret: secretkey,
+    secret: "secretkey", // keep it safe or use process.env.SECRET
     resave: false,
-    saveUninitialized: true,
-    cookie: { secure: false, maxAge: 1000 * 60 * 60 },
+    saveUninitialized: false,
+    store: MongoStore.create({
+      mongoUrl: process.env.MONGO,
+      ttl: 14 * 24 * 60 * 60, // sessions expire after 14 days
+    }),
   })
 );
 app.use(flash());
@@ -62,10 +66,9 @@ app.use((err, req, res, next) => {
   const { status = 500, message = "Some Error Occured" } = err;
   res.render("errorpage", { status, message });
 });
-//Listening to port
-app.listen(port, "0.0.0.0", () => {
-  console.log(`Listening to server`);
+const server = app.listen(port, "0.0.0.0", () => {
+  console.log(`✅ Listening on port ${port}`);
 });
 
 server.keepAliveTimeout = 120000; // 120 seconds
-server.headersTimeout = 120000;
+server.headersTimeout = 130000; // slightly higher
