@@ -13,7 +13,7 @@ const session = require("express-session");
 const flash = require("connect-flash");
 const jwt = require("jsonwebtoken");
 const cookieParser = require("cookie-parser");
-const port = process.env.PORT;
+const port = process.env.PORT || 10000;
 const secretkey = process.env.SECRET_KEY;
 //express session
 app.use(
@@ -63,6 +63,9 @@ app.use((err, req, res, next) => {
   res.render("errorpage", { status, message });
 });
 //Listening to port
-app.listen(port, () => {
+app.listen(port, "0.0.0.0", () => {
   console.log(`Listening to server`);
 });
+
+server.keepAliveTimeout = 120000; // 120 seconds
+server.headersTimeout = 120000;
