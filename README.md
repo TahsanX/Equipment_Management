@@ -29,13 +29,40 @@ This project helps departments (CSE, EEE, Mechanical, Civil, etc.) manage their 
 - **Other:** Bcrypt.js for password hashing  
 ## 📸 Screenshots
 
-![Home Dashboard](assets/Screenshot%202025-12-02%20002110.png)
-![CSE Overview](assets/Screenshot%202025-12-02%20002143.png)
-![EEE Overview](assets/Screenshot%202025-12-02%20002154.png)
-![ME Dept](assets/Screenshot%202025-12-02%20002235.png)
-![CE Dept](assets/Screenshot%202025-12-02%20002304.png)
-![Equipment Table](assets/Screenshot%202025-12-02%20002329.png)
-![Equipment Details](assets/Screenshot%202025-12-02%20002339.png)
-![Login Page](assets/Screenshot%202025-12-02%20002356.png)
+## 📸 Screenshots
+
+<p align="center">
+  <img src="assets/Screenshot%202025-12-02%20002110.png" width="800">
+</p>
+
+<p align="center">
+  <img src="assets/Screenshot%202025-12-02%20002143.png" width="800">
+</p>
+
+<p align="center">
+  <img src="assets/Screenshot%202025-12-02%20002154.png" width="800">
+</p>
+
+<p align="center">
+  <img src="assets/Screenshot%202025-12-02%20002235.png" width="800">
+</p>
+
+<p align="center">
+  <img src="assets/Screenshot%202025-12-02%20002304.png" width="800">
+</p>
+
+<p align="center">
+  <img src="assets/Screenshot%202025-12-02%20002329.png" width="800">
+</p>
+
+<p align="center">
+  <img src="assets/Screenshot%202025-12-02%20002339.png" width="800">
+</p>
+
+<p align="center">
+  <img src="assets/Screenshot%202025-12-02%20002356.png" width="800">
+</p>
+
+
 
 
