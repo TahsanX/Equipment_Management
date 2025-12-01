@@ -152,33 +152,58 @@ route.post(
   asyncwrap(async (req, res, next) => {
     const { username, dept, password } = req.body;
     const user = await userSchema.findOne({ username });
-    if (!user) {
-      next(new Expresserror("500", "Wrong credentials"));
-    } else {
-      if (dept != user.dept) {
-        next(new Expresserror("500", "Wrong credentials"));
-      }
-      const comparing = await bcrypt.compare(password, user.password);
-      if (!comparing) {
-        next(new Expresserror("500", "Wrong credentials"));
-      } else {
-        const token = jwt.sign({ username, dept }, secret_key, {
-          expiresIn: "1h",
-        });
-        req.session.token = token;
-        jwt.verify(token, secret_key, (err, decoded) => {
-          if (err) {
-            next(new Expresserror("500", "Verification Failed"));
-          }
-          req.user = decoded;
-          req.flash("success", `${req.user.username} you are logged in`);
-        });
 
-        res.redirect(req.session.redirectTo || "/");
-      }
+    if (!user || dept !== user.dept || !(await bcrypt.compare(password, user.password))) {
+      return next(new Expresserror("500", "Wrong credentials"));
     }
+
+    const token = jwt.sign({ username, dept }, secret_key, { expiresIn: "1h" });
+    req.session.token = token;
+
+    try {
+      const decoded = jwt.verify(token, secret_key);
+      req.user = decoded;
+      req.flash("success", `${req.user.username} you are logged in`);
+    } catch {
+      return next(new Expresserror("500", "Verification Failed"));
+    }
+
+    res.redirect(req.session.redirectTo || "/");
   })
 );
+
+// route.post(
+//   "/login",
+//   asyncwrap(async (req, res, next) => {
+//     const { username, dept, password } = req.body;
+//     const user = await userSchema.findOne({ username });
+//     if (!user) {
+//       next(new Expresserror("500", "Wrong credentials"));
+//     } else {
+//       if (dept != user.dept) {
+//         next(new Expresserror("500", "Wrong credentials"));
+//       }
+//       const comparing = await bcrypt.compare(password, user.password);
+//       if (!comparing) {
+//         next(new Expresserror("500", "Wrong credentials"));
+//       } else {
+//         const token = jwt.sign({ username, dept }, secret_key, {
+//           expiresIn: "1h",
+//         });
+//         req.session.token = token;
+//         jwt.verify(token, secret_key, (err, decoded) => {
+//           if (err) {
+//             next(new Expresserror("500", "Verification Failed"));
+//           }
+//           req.user = decoded;
+//           req.flash("success", `${req.user.username} you are logged in`);
+//         });
+
+//         res.redirect(req.session.redirectTo || "/");
+//       }
+//     }
+//   })
+// );
 route.get("/logout", verifyToken, (req, res) => {
   req.session.destroy();
   res.redirect("/");

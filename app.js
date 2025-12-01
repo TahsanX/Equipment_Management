@@ -3,7 +3,7 @@ const app = express();
 require("dotenv").config();
 const mongoose = require("mongoose");
 require("dotenv").config();
-const MongoStore = require("connect-mongo");
+//const MongoStore = require("connect-mongo");
 const path = require("path");
 const cseRoute = require("./routes/cse");
 const eeeRoute = require("./routes/eee");
@@ -19,15 +19,15 @@ const secretkey = process.env.SECRET_KEY;
 //express session
 app.use(
   session({
-    secret: "secretkey", // keep it safe or use process.env.SECRET
+    secret: "secretkey", // use process.env.SECRET in production
     resave: false,
     saveUninitialized: false,
-    store: MongoStore.create({
-      mongoUrl: process.env.MONGO,
-      ttl: 14 * 24 * 60 * 60, // sessions expire after 14 days
-    }),
+    cookie: {
+      maxAge: 1000 * 60 * 60 * 24 * 7, // optional: 7 days
+    },
   })
 );
+
 app.use(flash());
 app.use(cookieParser());
 app.use((req, res, next) => {
@@ -62,13 +62,15 @@ app.all("*", (req, res) => {
   res.render("404");
 });
 // error handling route
+// Error handling middleware
 app.use((err, req, res, next) => {
-  const { status = 500, message = "Some Error Occured" } = err;
+  const status = err.status || 500;
+  const message = err.message || "Some Error Occurred";
   res.render("errorpage", { status, message });
 });
-const server = app.listen(port, "0.0.0.0", () => {
-  console.log(`✅ Listening on port ${port}`);
+
+// Start server (local development)
+app.listen(port, () => {
+  console.log(`Server running on port ${port}`);
 });
 
-server.keepAliveTimeout = 120000; // 120 seconds
-server.headersTimeout = 130000; // slightly higher
