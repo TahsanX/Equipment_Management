@@ -38,10 +38,6 @@ This project helps departments (CSE, EEE, Mechanical, Civil, etc.) manage their 
 </p>
 
 <p align="center">
-  <img src="assets/Screenshot%202025-12-02%20002143.png" width="650">
-</p>
-
-<p align="center">
   <img src="assets/Screenshot%202025-12-02%20002154.png" width="650">
 </p>
 
@@ -64,6 +60,7 @@ This project helps departments (CSE, EEE, Mechanical, Civil, etc.) manage their 
 <p align="center">
   <img src="assets/Screenshot%202025-12-02%20002356.png" width="650">
 </p>
+
 
 
 
