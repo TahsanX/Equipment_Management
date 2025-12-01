@@ -27,13 +27,15 @@ This project helps departments (CSE, EEE, Mechanical, Civil, etc.) manage their 
 - **Authentication:** JWT + session  
 - **Templating:** EJS or similar (for rendering inventory pages)  
 - **Other:** Bcrypt.js for password hashing  
-!(assets/Screenshot%202025-12-02%20002110.png)
-!(assets/Screenshot%202025-12-02%20002143.png)
-!(assets/Screenshot%202025-12-02%20002154.png)
-!(assets/Screenshot%202025-12-02%20002235.png)
-!(assets/Screenshot%202025-12-02%200022304.png)
-!(assets/Screenshot%202025-12-02%200022329.png)
-!(assets/Screenshot%202025-12-02%200022339.png)
-!(assets/Screenshot%202025-12-02%200022356.png)
-   git clone https://github.com/TahsanX/Equipment_Management.git
-   cd Equipment_Management
+## 📸 Screenshots
+
+![Home Dashboard](assets/Screenshot%202025-12-02%20002110.png)
+![CSE Overview](assets/Screenshot%202025-12-02%20002143.png)
+![EEE Overview](assets/Screenshot%202025-12-02%20002154.png)
+![ME Dept](assets/Screenshot%202025-12-02%20002235.png)
+![CE Dept](assets/Screenshot%202025-12-02%20002304.png)
+![Equipment Table](assets/Screenshot%202025-12-02%20002329.png)
+![Equipment Details](assets/Screenshot%202025-12-02%20002339.png)
+![Login Page](assets/Screenshot%202025-12-02%20002356.png)
+
+
