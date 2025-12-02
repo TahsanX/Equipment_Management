@@ -1,5 +1,7 @@
 # Equipment Management System 🚧
 
+<a href="https://equipment-management-2k5z.onrender.com/">Live Demo</a>
+
 A web-based application to manage lab/university equipment across multiple departments — track inventory, costs, and availability easily.
 
 ---
@@ -62,6 +64,7 @@ This project helps departments (CSE, EEE, Mechanical, Civil, etc.) manage their 
 <p align="center">
   <img src="assets/Screenshot%202025-12-02%20002356.png" width="650">
 </p>
+
 
 
 
